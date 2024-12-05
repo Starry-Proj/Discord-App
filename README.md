@@ -21,3 +21,8 @@ Our global prefixes include, but are not limited to:
 2. **`purge`** : Deletes (x) amount of messages from the current channel
 3. **`default-roles`** : Automatically re-assigns the default roles to every member of the guild
 > You can configure which role(s) you'd like via the list in the command
+
+---
+
+## App Contributors 🕹️
+1. [Suno](https://github.com/mr-suno) - Starry founder, lead developer
