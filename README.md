@@ -6,12 +6,6 @@ You may whitelist any servers however by modifying the allowed servers array in 
 
 ---
 
-## Settings ⚙️
-Our global prefixes include, but are not limited to:
-- `s.`
-- `?`
-- `/`
-
 ## Modules 📜
 > [!WARNING]
 > Commands like the **`default-roles`** command take a _long_ time to finish, depending on the server's size.
