@@ -16,6 +16,18 @@ class Admin(Commands.Cog):
     @Commands.has_permissions(administrator=True)
     @Commands.command()
     async def sync(self, CTX: Commands.Context):
+        whitelisted_ids = OS.getenv("WHITELISTED", "").split(",")
+        
+        for id in whitelisted_ids:
+            try:
+                if CTX.guild.id == int(id.strip()):
+                    return await CTX.reply(embed=errorEmbed(Discord.Color.red(),
+                                           "Message Purge ‎ <a:bonk:1289335115045928981>",
+                                           "You are not allowed to use this command in this server.\n- To use this app, join the Starry server!\n\nInvite: [disсord.gg/zyXZSn97hN](https://discord.gg/zyXZSn97hN)"))
+            
+            except ValueError:
+                continue
+        
         await CTX.reply(embed=successEmbed(None,
                                            "Syncing Tree ‎ <:connect:1281034647480045719>",
                                            "To view the updated command tree, restarting Discord.",
@@ -31,24 +43,53 @@ class Admin(Commands.Cog):
     @Commands.hybrid_command(name="purge",
                              description="[🔒] Deletes a specified number of messages")
     async def purge(self, CTX: Commands.Context, amount: int):
-        plural = "s" if amount != 1 else ""
+        whitelisted_ids = OS.getenv("WHITELISTED", "").split(",")
         
+        for id in whitelisted_ids:
+            try:
+                if CTX.guild.id == int(id.strip()):
+                    return await CTX.reply(embed=errorEmbed(Discord.Color.red(),
+                                           "Message Purge ‎ <a:bonk:1289335115045928981>",
+                                           "You are not allowed to use this command in this server.\n- To use this app, join the Starry server!\n\nInvite: [disсord.gg/zyXZSn97hN](https://discord.gg/zyXZSn97hN)"))
+            
+            except ValueError:
+                continue
+
+        plural = "s" if amount != 1 else ""
+        embed = successEmbed(None,
+                             f"Message{plural} Purge ‎ <a:bonk:1289335115045928981>",
+                             f"Successfully deleted {formatNumber(amount)} message{plural}.",
+                             "This command is available with Manage Messages perms only.")
+
         try:
             await CTX.channel.purge(limit=amount + 1)
 
         except Exception:
             pass
 
-        await CTX.send(embed=successEmbed(None,
-                                          f"Message{plural} Purge ‎ <a:bonk:1289335115045928981>",
-                                          f"Successfully deleted {formatNumber(amount)} messages.",
-                                          "This command is available with Manage Messages perms only."), delete_after=3)
+        await CTX.defer()
+        if isinstance(CTX, Discord.Interaction):
+            return await CTX.followup.send(embed=embed, delete_after=3)
+
+        await CTX.send(embed=embed, delete_after=3)
 
     @Commands.cooldown(1, 5, Commands.BucketType.user) 
     @Commands.has_permissions(administrator=True)
     @Commands.hybrid_command(name="default-roles",
                              description="[🔒] Assigns default roles to all members")
     async def default_roles(self, CTX: Commands.Context):
+        whitelisted_ids = OS.getenv("WHITELISTED", "").split(",")
+        
+        for id in whitelisted_ids:
+            try:
+                if CTX.guild.id == int(id.strip()):
+                    return await CTX.reply(embed=errorEmbed(Discord.Color.red(),
+                                           "Message Purge ‎ <a:bonk:1289335115045928981>",
+                                           "You are not allowed to use this command in this server.\n- To use this app, join the Starry server!\n\nInvite: [disсord.gg/zyXZSn97hN](https://discord.gg/zyXZSn97hN)"))
+            
+            except ValueError:
+                continue
+        
         # Idea:
         # - Have a list-variable that contains the IDs of all default roles
         # - Iterate through the list and assign each role to the member
