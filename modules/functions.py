@@ -1,9 +1,10 @@
 import discord as Discord
+from discord.ui import Button, View
 
 def formatNumber(number: int) -> str:
     return "{:,}".format(number)
 
-def errorEmbed(overrideColor: Discord.Color = None, title: str = None, description: str = None, footer: str = None, fields: list = None) -> None:
+def errorEmbed(overrideColor: Discord.Color = None, title: str = None, description: str = None, footer: str = None, fields: list = None, buttons: list = None) -> Discord.Embed:
     embed = Discord.Embed(title=title if title else None,
                           description=description if description else None,
                           color=overrideColor if overrideColor != None else Discord.Color.red())
@@ -16,10 +17,16 @@ def errorEmbed(overrideColor: Discord.Color = None, title: str = None, descripti
             
     if footer:
         embed.set_footer(text=footer)
+    
+    view = View()
+    if buttons:
+        for button in buttons:
+            btn = Button(label=button['label'], style=button['style'], custom_id=button['custom_id'])
+            view.add_item(btn)
         
-    return embed
+    return embed 
 
-def successEmbed(overrideColor: Discord.Color = None, title: str = None, description: str = None, footer: str = None, fields: list = None) -> None:
+def successEmbed(overrideColor: Discord.Color = None, title: str = None, description: str = None, footer: str = None, fields: list = None, buttons: list = None) -> Discord.Embed:
     embed = Discord.Embed(title=title if title else None,
                           description=description if description else None,
                           color=overrideColor if overrideColor != None else Discord.Color.green())
@@ -32,5 +39,11 @@ def successEmbed(overrideColor: Discord.Color = None, title: str = None, descrip
         
     if footer:
         embed.set_footer(text=footer)
+    
+    view = View()
+    if buttons:
+        for button in buttons:
+            btn = Button(label=button['label'], style=button['style'], custom_id=button['custom_id'])
+            view.add_item(btn)
         
     return embed
