@@ -17,6 +17,7 @@ You may whitelist any servers however by modifying the allowed servers array in 
 > You can configure which role(s) you'd like via the list in the command
 ### Available for All
 1. **`ping`** : Gives the latency in MS and returns if it's fast or slow
+2. **`script`** : Returns an embed that shows you the latest script, includes a mobile-friendly button
 
 ---
 
