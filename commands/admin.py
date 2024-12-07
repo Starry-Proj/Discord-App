@@ -16,11 +16,11 @@ class Admin(Commands.Cog):
     @Commands.has_permissions(administrator=True)
     @Commands.command()
     async def sync(self, CTX: Commands.Context):
-        whitelisted_ids = OS.getenv("WHITELISTED", "").split(",")
+        guilds = OS.getenv("WHITELISTED", "").split(",")
         
-        for id in whitelisted_ids:
+        for id in guilds:
             try:
-                if CTX.guild.id == int(id.strip()):
+                if CTX.guild.id != int(id.strip()):
                     return await CTX.reply(embed=errorEmbed(Discord.Color.red(),
                                            "Message Purge ‎ <a:bonk:1289335115045928981>",
                                            "You are not allowed to use this command in this server.\n- To use this app, join the Starry server!\n\nInvite: [disсord.gg/zyXZSn97hN](https://discord.gg/zyXZSn97hN)"))
@@ -43,11 +43,11 @@ class Admin(Commands.Cog):
     @Commands.hybrid_command(name="purge",
                              description="[🔒] Deletes a specified number of messages")
     async def purge(self, CTX: Commands.Context, amount: int):
-        whitelisted_ids = OS.getenv("WHITELISTED", "").split(",")
+        guilds = OS.getenv("WHITELISTED", "").split(",")
         
-        for id in whitelisted_ids:
+        for id in guilds:
             try:
-                if CTX.guild.id == int(id.strip()):
+                if CTX.guild.id != int(id.strip()):
                     return await CTX.reply(embed=errorEmbed(Discord.Color.red(),
                                            "Message Purge ‎ <a:bonk:1289335115045928981>",
                                            "You are not allowed to use this command in this server.\n- To use this app, join the Starry server!\n\nInvite: [disсord.gg/zyXZSn97hN](https://discord.gg/zyXZSn97hN)"))
@@ -78,11 +78,11 @@ class Admin(Commands.Cog):
     @Commands.hybrid_command(name="default-roles",
                              description="[🔒] Assigns default roles to all members")
     async def default_roles(self, CTX: Commands.Context):
-        whitelisted_ids = OS.getenv("WHITELISTED", "").split(",")
+        guilds = OS.getenv("WHITELISTED", "").split(",")
         
-        for id in whitelisted_ids:
+        for id in guilds:
             try:
-                if CTX.guild.id == int(id.strip()):
+                if CTX.guild.id != int(id.strip()):
                     return await CTX.reply(embed=errorEmbed(Discord.Color.red(),
                                            "Message Purge ‎ <a:bonk:1289335115045928981>",
                                            "You are not allowed to use this command in this server.\n- To use this app, join the Starry server!\n\nInvite: [disсord.gg/zyXZSn97hN](https://discord.gg/zyXZSn97hN)"))
