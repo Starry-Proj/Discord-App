@@ -22,7 +22,7 @@ class Admin(Commands.Cog):
             try:
                 if CTX.guild.id != int(id.strip()):
                     return await CTX.reply(embed=errorEmbed(Discord.Color.red(),
-                                           "Message Purge ‎ <a:bonk:1289335115045928981>",
+                                           "Starry Police ‎ <a:bonk:1289335115045928981>",
                                            "You are not allowed to use this command in this server.\n- To use this app, join the Starry server!\n\nInvite: [disсord.gg/zyXZSn97hN](https://discord.gg/zyXZSn97hN)"))
             
             except ValueError:
@@ -49,7 +49,7 @@ class Admin(Commands.Cog):
             try:
                 if CTX.guild.id != int(id.strip()):
                     return await CTX.reply(embed=errorEmbed(Discord.Color.red(),
-                                           "Message Purge ‎ <a:bonk:1289335115045928981>",
+                                           "Starry Police ‎ <a:bonk:1289335115045928981>",
                                            "You are not allowed to use this command in this server.\n- To use this app, join the Starry server!\n\nInvite: [disсord.gg/zyXZSn97hN](https://discord.gg/zyXZSn97hN)"))
             
             except ValueError:
@@ -69,7 +69,7 @@ class Admin(Commands.Cog):
 
         await CTX.defer()
         if isinstance(CTX, Discord.Interaction):
-            return await CTX.followup.send(embed=embed, delete_after=3)
+            return await CTX.response.send_message(embed=embed, delete_after=3)
 
         await CTX.send(embed=embed, delete_after=3)
 
@@ -84,7 +84,7 @@ class Admin(Commands.Cog):
             try:
                 if CTX.guild.id != int(id.strip()):
                     return await CTX.reply(embed=errorEmbed(Discord.Color.red(),
-                                           "Message Purge ‎ <a:bonk:1289335115045928981>",
+                                           "Starry Police ‎ <a:bonk:1289335115045928981>",
                                            "You are not allowed to use this command in this server.\n- To use this app, join the Starry server!\n\nInvite: [disсord.gg/zyXZSn97hN](https://discord.gg/zyXZSn97hN)"))
             
             except ValueError:
