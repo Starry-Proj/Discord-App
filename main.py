@@ -56,4 +56,4 @@ for filename in OS.listdir('./commands'):
     
 # Connect Bot
 
-client.run("MTMxMzc3ODUyMDMyMDYzOTA2Nw.Gz5rCy.nxB6E5zHZl52aji8_C9DH8ZNvJIJOuyegdBZqU")
+client.run("")
