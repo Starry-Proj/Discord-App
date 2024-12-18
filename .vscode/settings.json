@@ -1,0 +1,10 @@
+{
+    "robloxLsp.diagnostics.globals": [
+        "syn",
+        "protectgui",
+        "expect",
+        "describe",
+        "it",
+        "getgenv"
+    ]
+}
