@@ -45,7 +45,7 @@ class General(Commands.Cog):
         class ScriptView(Discord.ui.View):
             @Discord.ui.button(label="Give Raw Script", style=Discord.ButtonStyle.primary)
             async def giveRaw(self, interaction: Discord.Interaction, button: Discord.ui.Button):
-                await interaction.response.send_message(content=script)
+                await interaction.response.send_message(content=script, ephemeral=True)
 
         await CTX.reply(embed=successEmbed(None,
                                            "Script",
