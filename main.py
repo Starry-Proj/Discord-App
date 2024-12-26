@@ -40,7 +40,7 @@ async def on_member_join(member: Discord.Member):
        if channel:
            welcome_embed = Discord.Embed(
     color=0x43b47e,
-    description=f"<:discordjoin:1267648662952214571> <@{member.id}> has joined the server!"
+    description=f"> <:discordjoin:1267648662952214571> <@{member.id}> has joined the server!"
 )   
            await channel.send(embed=welcome_embed)
    except:
@@ -62,4 +62,4 @@ for filename in OS.listdir('./commands'):
     
 # Connect Bot
 
-client.run("TokenHere")
+client.run("discord.gg/luau")
