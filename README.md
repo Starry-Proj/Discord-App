@@ -17,4 +17,3 @@ To get a full list of commands, use `/help` or `$help`!
 
 ## App Contributors 🕹️
 1. [Suno](https://github.com/mr-suno) - Starry founder, lead developer
-2. [Zade](https://github.com/xootzie) - App hoster & side app developer
