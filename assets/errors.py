@@ -29,14 +29,6 @@ Client = GetClient()
 # -- Error Handling -- #
 
 def ErrorHandling():
-    """
-    
-        This is the ONLY event outside of `./events.py`,
-        
-        everything else is in that file.
-    
-    """
-    
     @Client.event
     async def on_command_error(CTX: Commands.Context, Error: str) -> None:
         print(f"{Newline}{Emojis["X"]} Something Came Up: {Error}")
