@@ -1,5 +1,4 @@
 import discord as Discord;
-import os      as OS;
 
 from discord.ext      import commands as Commands;
 from assets.functions import *;                     # Load our Functions
@@ -39,13 +38,13 @@ class Debug(Commands.Cog):
         
         """
 
-        Ping    = round(self.App.latency, 2)
+        Ping = round(self.App.latency, 2)
 
         HasGood = Ping < 100
-        IsGood  = "fast" if HasGood else "slow"
-        Color   = Discord.Color.green() if HasGood else Discord.Color.yellow()
+        IsGood = "fast" if HasGood else "slow"
+        Color = Discord.Color.green() if HasGood else Discord.Color.yellow()
 
-        Embed   = Discord.Embed(title=f"Pong! {Whitespace}{Emojis["Paddle"]}",
+        Embed = Discord.Embed(title=f"Pong! {Whitespace}{Emojis["Paddle"]}",
                                 description=f"Starry's ping is generally {IsGood} & took **{Ping}** seconds to respond.",
                                 color=Color)
 
@@ -94,13 +93,13 @@ class Debug(Commands.Cog):
         
         FullPermissions = [ManagerPermissions, MembersPermissions, UncategorizedPerms]
 
-        Tested     = []
+        Tested = []
 
         Percentage = 0
-        Failed     = 0
-        Score      = 0
+        Failed = 0
+        Score = 0
 
-        Highest    = len(ManagerPermissions) + len(MembersPermissions) + len(UncategorizedPerms)
+        Highest = len(ManagerPermissions) + len(MembersPermissions) + len(UncategorizedPerms)
 
         for Permission in FullPermissions:
             for Perm in Permission:
@@ -109,6 +108,7 @@ class Debug(Commands.Cog):
                     Percentage = round((Score / Highest) * 100, 2)
 
                     Tested.append(Emojis["Check"] + Whitespace + Perm)
+                    
                 else:
                     Failed += 1
 
