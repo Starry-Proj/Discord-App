@@ -18,9 +18,6 @@ from assets.constants import *;                     # Load our Constant Variable
 
 """
 
-# Variables
-
-
 # -- Classes -- #
 
 class Available(Commands.Cog):
