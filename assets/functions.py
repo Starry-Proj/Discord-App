@@ -58,8 +58,6 @@ async def SetPresence(Activity: Discord.Activity, Status: Discord.Status) -> Non
 
 async def SendGreeting(Member: Discord.Member, Message: str = None, ChannelID: int = None) -> None:
     """
-    
-        When a member joins the server, they will be seeing the content below.
 
         Try and avoid editing this function, rather edit `./events.py`
     
@@ -83,14 +81,6 @@ async def SendGreeting(Member: Discord.Member, Message: str = None, ChannelID: i
         print(f"{Emojis["X"]} Channel not found! - {GreetingChannel}")
 
 async def AssignRole(Member: Discord.Member, Roles: list) -> None:
-    """
-    
-        This function will simply go through the list of roles
-
-        & assign each role to the given Member (Discord.Member).
-
-    """
-
     for Role in Roles:
         if Role is not None and Role not in Member.roles:
             await Member.add_roles(Role)
