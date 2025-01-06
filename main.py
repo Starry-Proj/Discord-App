@@ -25,9 +25,9 @@ load_dotenv()
 
 # Variables
 
-TOKEN = OS.getenv("TOKEN")
+TOKEN: str = OS.getenv("TOKEN")
 
-Client = GetClient()
+Client: Commands.Bot = GetClient()
 
 
 # -- Setup Syncing -- #
@@ -46,9 +46,9 @@ async def Sync(CTX: Commands.Context) -> None:
             except Exception as Error:
                 print(f"{Emojis["X"]} Error reloading {Name[:-3]} Cog: {Error}")
 
-    Message = f"Everything was synced to the command tree! {Newline}{Newline} 1. Reload Discord using **CTRL + R** or **CMD + R** on macOS {Newline} 2. On Mobile, simply close & re-open Discord. {Newline}{Newline}-# **NOTE**: Still having issues? Contact [@Suno](<https://discord.com/users/1002377371892072498>)"
+    Message: str = f"Everything was synced to the command tree! {Newline}{Newline} 1. Reload Discord using **CTRL + R** or **CMD + R** on macOS {Newline} 2. On Mobile, simply close & re-open Discord. {Newline}{Newline}-# **NOTE**: Still having issues? Contact [@Suno](<https://discord.com/users/1002377371892072498>)"
 
-    Embed = Discord.Embed(title="Synced Commands",
+    Embed: Discord.Embed = Discord.Embed(title="Synced Commands",
                           description=Message,
                           color=Discord.Color.green())
 
