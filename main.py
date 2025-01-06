@@ -16,11 +16,6 @@ load_dotenv()
 
     This file will **never** have to be updated, unless you want to add more features.
 
-    
-    In short, this file loads everything else,
-
-    so we'd recommend you code everything **outside** of this file, thanks!
-
     --
 
     Written: 1/4/2025
@@ -39,20 +34,6 @@ Client = GetClient()
 
 @Client.command(name="sync")
 async def Sync(CTX: Commands.Context) -> None:
-    """
-    
-        This command basically, in short syncs the command tree.
-
-        It's useful for debugging, but not much else.
-
-        Only touch this command if it's broken, thanks!
-
-        --
-
-        Usage: $sync
-
-    """
-
     await Client.tree.sync()
 
     for Name in OS.listdir("./commands"):
