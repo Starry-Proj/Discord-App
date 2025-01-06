@@ -31,7 +31,6 @@ def SetupEvents() -> None:
 
         RemoveCache()
 
-
     @Client.event
     async def on_member_join(Member: Discord.Member) -> None:
         MembersRole = Discord.utils.get(Member.guild.roles, id=1314112853942472735)
