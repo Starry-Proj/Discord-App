@@ -120,7 +120,7 @@ class Debug(Commands.Cog):
         
         Embed.add_field(name="Results", value=f"```{Newline.join(Tested)}```")
 
-        await CTX.reply(embed=Embed, delete_after=30)
+        await CTX.reply(embed=Embed, delete_after=10)
 
 
 # -- Setup the Cog -- #
