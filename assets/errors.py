@@ -31,8 +31,6 @@ Client = GetClient()
 def ErrorHandling():
     @Client.event
     async def on_command_error(CTX: Commands.Context, Error: str) -> None:
-        assert isinstance(Error, str), "Error should be of type \"str\""
-
         print(f"{Newline}{Emojis["X"]} Something Came Up: {Error}")
 
         Embed = Discord.Embed(title="Uh Oh..",
