@@ -25,7 +25,7 @@ load_dotenv()
 
 # Variables
 
-TOKEN  = OS.getenv("TOKEN")
+TOKEN = OS.getenv("TOKEN")
 
 Client = GetClient()
 
@@ -41,18 +41,20 @@ async def Sync(CTX: Commands.Context) -> None:
             try:
                 await Client.reload_extension(f"commands.{Name[:-3]}")
 
-                print(f"{Emojis["Gear"]} Reloaded {Name[:-3]} Cog {Newline}")
+                print(f"{Emojis["Gear"]} Reloaded {Name[:-3]} Cog")
 
             except Exception as Error:
-                print(f"{Emojis["X"]} Error reloading {Name[:-3]} Cog: {Error}{Newline}")
+                print(f"{Emojis["X"]} Error reloading {Name[:-3]} Cog: {Error}")
 
-    Message = f"Everything was synced to the command tree! {Newline}{Newline} 1. Reload Discord using **CTRL + R** or **CMD + R** on macOS {Newline} 2. On Mobile, simply close & re-open Discord. {Newline}{Newline} -# **NOTE**: Still having issues? Contact [@Suno](<https://discord.com/users/1002377371892072498>)"
+    Message = f"Everything was synced to the command tree! {Newline}{Newline} 1. Reload Discord using **CTRL + R** or **CMD + R** on macOS {Newline} 2. On Mobile, simply close & re-open Discord. {Newline}{Newline}-# **NOTE**: Still having issues? Contact [@Suno](<https://discord.com/users/1002377371892072498>)"
 
     Embed = Discord.Embed(title="Synced Commands",
                           description=Message,
                           color=Discord.Color.green())
 
-    print(f"{Emojis["Rocket"]} Synced all Cogs{Newline}")
+    print(f"{Newline}{Emojis["Rocket"]} Synced all Cogs{Newline}")
+
+    RemoveCache()
     
     await CTX.reply(embed=Embed, delete_after=5)
 
