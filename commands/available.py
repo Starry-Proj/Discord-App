@@ -1,5 +1,4 @@
 import discord as Discord;
-import os      as OS;
 
 from discord.ui       import Button, View;
 from discord.ext      import commands as Commands;
