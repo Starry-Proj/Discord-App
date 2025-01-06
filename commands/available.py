@@ -18,6 +18,11 @@ from assets.constants import *;                     # Load our Constant Variable
 
 """
 
+# Variables
+
+
+# -- Classes -- #
+
 class Available(Commands.Cog):
     def __init__(self, App) -> None:
         self.App = App
@@ -48,6 +53,8 @@ class Available(Commands.Cog):
         Converted = str(await Invite)
 
         def CleanseInvite(Code: str) -> str:
+            assert isinstance(Code, str), "Code should be of type \"str\""
+
             return str.replace(Code, "https://", "")
 
         Cleansed = CleanseInvite(Converted)
