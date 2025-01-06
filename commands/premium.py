@@ -54,7 +54,7 @@ class Premium(Commands.Cog):
         for Item in ButtonList:
             NewViewer.add_item(Item)
 
-        await CTX.reply(embed=Embed, view=NewViewer, ephemeral=True)
+        await CTX.reply(embed=Embed, view=NewViewer, delete_after=30)
 
 
 # -- Setup the Cog -- #
