@@ -10,10 +10,10 @@
 
 """
 
-Whitespace = "‎ "
-Newline    = "\n"
+Whitespace: str = "‎ "
+Newline: str = "\n"
 
-Emojis = {
+Emojis: dict = {
     "Rocket": "🚀",
     "Wave": "👋",
     "X": "❌",
@@ -44,6 +44,7 @@ Emojis = {
     "Gear": "⚙️",
 }
 
-CustomEmojis = {
-    "Join": "<:discordjoin:1267648662952214571>"
+CustomEmojis: dict = {
+    "Join": "<:discordjoin:1267648662952214571>",
+    "Check": "<:check:1314405843315462216>"
 }
