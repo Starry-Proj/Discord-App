@@ -25,21 +25,10 @@ Client  = GetClient()
 # Event Handling
 
 def SetupEvents() -> None:
-
-    """
-    
-        This function is responsible for loading our events.
-
-        There's probably another way, but this way is good too!
-    
-    """
-
     @Client.event
     async def on_ready() -> None:
         print(f"{Newline}{Emojis["Rocket"]} Discord Bot ready!")
         print(f"{Emojis["Wave"]} Logged in as {Client.user.name} : UID - {Client.user.id}{Newline}")
-
-        # await SetPresence(Discord.Activity(type=Discord.ActivityType.watching, name="/script"), Discord.Status.online)
 
         # -- Remove __pychache__ Folders -- #
 
