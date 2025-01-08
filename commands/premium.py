@@ -30,7 +30,7 @@ class Premium(Commands.Cog):
     @Commands.hybrid_command(name="buy",
                              description="Link the channel to purchase Starry premium")
     
-    async def Buy(self, CTX: Commands.Context):
+    async def Buy(self, CTX: Commands.Context) -> None:
         """
         
             In short, this command will just be an advertisement lol,
