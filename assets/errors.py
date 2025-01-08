@@ -31,10 +31,13 @@ Client = GetClient()
 def ErrorHandling():
     @Client.event
     async def on_command_error(CTX: Commands.Context, Error: str) -> None:
+        if Error.lower().find("cooldown"):
+            return
+
         print(f"{Newline}{Emojis["X"]} Something Came Up: {Error}")
 
         Embed = Discord.Embed(title="Uh Oh..",
-                            description=f"Something came up when processing your command, {Newline}- if it's anything about a cooldown, **disregard this message**",
+                            description=f"Something came up when processing your command",
                             color=Discord.Color.yellow())
         
         Embed.add_field(name="Error Message", value=f"```{Newline}{Error}{Newline}```")
