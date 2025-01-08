@@ -29,7 +29,7 @@ class Debug(Commands.Cog):
     @Commands.hybrid_command(name       ="ping",
                              description="Returns Starry's latency in milliseconds")
     
-    async def Ping(self, CTX: Commands.Context):
+    async def Ping(self, CTX: Commands.Context) -> None:
         """
         
             This command will return a full embed of the everything you'll wanna know,
@@ -57,7 +57,7 @@ class Debug(Commands.Cog):
     @Commands.hybrid_command(name       ="test",
                              description="Does a full permissions check on the bot")
     
-    async def Exam(self, CTX: Commands.Context):
+    async def Exam(self, CTX: Commands.Context) -> None:
         if not CTX.guild:
             return await CTX.reply(f"<@{CTX.author.id}> {Newline}## Out of Server.. {Newline} This command can only be used in a server, {Newline}- we advise you join our official [Discord server](https://discord.gg/luau) @ discord.gg/luau {Newline}{Whitespace}")
 
