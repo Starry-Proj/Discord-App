@@ -58,7 +58,9 @@ class Debug(Commands.Cog):
                              description="Does a full permissions check on the bot")
     
     async def Exam(self, CTX: Commands.Context) -> None:
-        if not CTX.guild:
+        Guild = CTX.guild
+
+        if not Guild:
             return await CTX.reply(f"<@{CTX.author.id}> {Newline}## Out of Server.. {Newline} This command can only be used in a server, {Newline}- we advise you join our official [Discord server](https://discord.gg/luau) @ discord.gg/luau {Newline}{Whitespace}")
 
         """
@@ -75,7 +77,6 @@ class Debug(Commands.Cog):
         MembersPermissions = ["kick_members", "ban_members", "moderate_members"]
         UncategorizedPerms = ["create_instant_invite", "create_public_threads", "create_private_threads", "embed_links", "attach_files", "read_message_history", "mention_everyone", "add_reactions"]
 
-        Guild = CTX.guild
         ID    = Guild.me.id
 
         if ID is None:
