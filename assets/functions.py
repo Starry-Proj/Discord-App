@@ -12,14 +12,15 @@ from .constants  import *;                       # Load our Constant Variables
 
     --
 
-    Written: 1/4/2025 - 1/10/2025
+    Written: 1/4/2025
 
 """
 
 # Variables
 
 Client: Commands.Bot = Commands.Bot(command_prefix="$",
-                      intents=Discord.Intents.all())
+                                    intents=Discord.Intents.all(),
+                                    help_command=None)
 
 Script: str = f"loadstring(game:HttpGet(\"https://luau.tech/build\"))()"
 
@@ -89,7 +90,7 @@ def RemoveCache() -> None:
 def PermissionExists(Permission: str) -> bool:
     return hasattr(Discord.Permissions, Permission)
 
-def AllowedPermissions(Permissions: list) -> list: # e.g. -> AllowedPermissions(["manage_server", "administrator", "moderate_members"])
+def AllowedPermissions(Permissions: list) -> list: # e.g. -> allowedPermissions(["manage_server", "administrator", "moderate_members"])
     FinalList = []
 
     for Permission in Permissions:
