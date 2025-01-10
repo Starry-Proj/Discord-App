@@ -32,7 +32,7 @@ class Admin(Commands.Cog):
     # -- Ban / Kick / Unban Commands -- #
 
     @Commands.cooldown(1, 5, Commands.BucketType.user)
-    @Commands.hybrid_command(name="ban",
+    @Commands.hybrid_command(name       ="ban",
                              description=f"{Emojis["Lock"]} Forever remove a member* from the server")
     
     async def Ban(self, CTX: Commands.Context, member: Discord.Member, reason: str = None) -> None:
@@ -62,7 +62,7 @@ class Admin(Commands.Cog):
         await CTX.reply(embed=Embed, delete_after=10)
 
     @Commands.cooldown(1, 5, Commands.BucketType.user)
-    @Commands.hybrid_command(name="unban",
+    @Commands.hybrid_command(name       ="unban",
                              description=f"{Emojis["Lock"]} Allows an already banned member to join back")
     
     async def Unban(self, CTX: Commands.Context, user_id: int) -> None:
@@ -74,7 +74,7 @@ class Admin(Commands.Cog):
 
     
     @Commands.cooldown(1, 5, Commands.BucketType.user)
-    @Commands.hybrid_command(name="kick",
+    @Commands.hybrid_command(name       ="kick",
                              description=f"{Emojis["Lock"]} Remove a member* from the server")
     
     async def Kick(self, CTX: Commands.Context, member: Discord.Member, reason: str = None) -> None:
@@ -107,7 +107,7 @@ class Admin(Commands.Cog):
     # -- Mute / Unmute Commands -- #
 
     @Commands.cooldown(1, 5, Commands.BucketType.user)
-    @Commands.hybrid_command(name="mute",
+    @Commands.hybrid_command(name       ="mute",
                              description=f"{Emojis["Lock"]} Mute a member* for a certain amount of time")
     
     async def Mute(self, CTX: Commands.Context, member: Discord.Member, minutes: int = None, reason: str = None) -> None:
@@ -141,7 +141,7 @@ class Admin(Commands.Cog):
 
 
     @Commands.cooldown(1, 5, Commands.BucketType.user)
-    @Commands.hybrid_command(name="unmute",
+    @Commands.hybrid_command(name       ="unmute",
                              description=f"{Emojis["Lock"]} Remove a member's timeout")
     
     async def Unmute(self, CTX: Commands.Context, member: Discord.Member) -> None:
@@ -171,7 +171,7 @@ class Admin(Commands.Cog):
     # -- Clear Command -- #
 
     @Commands.cooldown(1, 5, Commands.BucketType.user)
-    @Commands.hybrid_command(name="clear",
+    @Commands.hybrid_command(name       ="clear",
                              description=f"{Emojis["Lock"]} Quickly delete messages in bulk",
                              aliases=["purge", "clean"])
     
