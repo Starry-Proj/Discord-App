@@ -12,7 +12,7 @@ from .constants  import *;                       # Load our Constant Variables
 
     --
 
-    Written: 1/4/2025
+    Written: 1/4/2025 - 1/10/2025
 
 """
 
@@ -25,6 +25,23 @@ Script: str = f"loadstring(game:HttpGet(\"https://luau.tech/build\"))()"
 
 
 # -- GENERAL FUNCTIONS -- #
+
+def FormatTime(Minutes: int) -> str:
+    TotalSeconds = Minutes * 60
+
+    def Round(Input: int) -> int:
+        Rounded = round(Input, 1)
+
+        if Rounded == 0.0:
+            return 0
+
+        return Rounded
+
+    Hours = Round((TotalSeconds // 3600) % 24)
+    Minutes = Round((TotalSeconds % 3600) // 60)
+    Seconds = Round(TotalSeconds % 60)
+
+    return f"{Hours} {"hours" if Hours != 1 else "hour"}, {Minutes} {"minutes" if Minutes != 1 else "minute"} and {Seconds} {"seconds" if Seconds != 1 else "second"}"
 
 def FormatNumber(Number: int) -> str:
     assert isinstance(Number, int), "Number should be of type \"int\""
@@ -67,7 +84,58 @@ def RemoveCache() -> None:
             OS.rmdir(Root)
 
 
+# -- UTILITY -- #
+
+def PermissionExists(Permission: str) -> bool:
+    return hasattr(Discord.Permissions, Permission)
+
+def AllowedPermissions(Permissions: list) -> list: # e.g. -> allowedPermissions(["manage_server", "administrator", "moderate_members"])
+    FinalList = []
+
+    for Permission in Permissions:
+        if PermissionExists(Permission):
+            FinalList.append(Permission)
+
+    return FinalList
+
+def IsMuted(Member: Discord.Member) -> bool:
+    if Member.timed_out_until:
+        return True
+    
+    return False
+
+def ItemInList(List: list, *Item) -> bool:
+    for Item in List:
+        if Item in List:
+            return True
+        
+    return False
+
+
+# -- EMBEDS -- #
+
+def Failure(Issue: str, Command: str, Description: str, Reason: str) -> Discord.Embed:
+    MessageBox = f"```md{Newline}# {Reason}{Newline}```"
+
+    Embed: Discord.Embed = Discord.Embed(title=f"{Command}  —  {Issue}",
+                                         description=f"{Description}{Newline}{Newline}{MessageBox if Reason != None else ""}",
+                                         color=Discord.Color.red())
+    
+    return Embed
+
+
 # -- GETTERS -- #
+
+def GetPermissions(Member: Discord.Member) -> list:
+    PermList: list = []
+    
+    for Role in Member.roles:
+        if Role.name != "@everyone":
+            for Perm in Role.permissions:
+                if getattr(Role.permissions, Perm, False):
+                    PermList.append(Perm)
+
+    return PermList
 
 def GetClient() -> Commands.Bot:
     return Client
@@ -108,7 +176,7 @@ async def SendGreeting(Member: Discord.Member, Message: str = None, ChannelID: i
     Channel = Client.get_channel(GreetingChannel)
 
     if Channel is not None:
-        await Channel.send(embed=Embed)
+        await Channel.send(content=f"<@{Member.id}>", embed=Embed)
 
         print(f"{Emojis["Wave"]} {Member.name} has joined the server!")
 
