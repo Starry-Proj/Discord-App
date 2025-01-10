@@ -11,10 +11,12 @@ from assets.constants import *;                     # Load our Constant Variable
 
     - script - Returns the current loadstring
     - invite - Returns the invite link for Starry's Discord server
+    - help   - Returns an embed that lets you scroll through every command
+    - games  - Returns every support game for Starry
 
     --
 
-    Written: 1/5/2025
+    Written: 1/5/2025 - 1/10/2025
 
 """
 
@@ -33,10 +35,10 @@ class Available(Commands.Cog):
                              description="Generate a permanent invite to the server")
     
     async def Invite(self, CTX: Commands.Context) -> None:
-        Embed = Discord.Embed(title="Server Invite",
+        Embed: Discord.Embed = Discord.Embed(title="Server Invite",
                               description=f"{CustomEmojis["Check"]}{Whitespace} Here's your permanent invite to Starry")
         
-        Settings = {
+        Settings: dict = {
             "reason": "Starry Invite",
             "age" : 0,
             "uses" : 0,
@@ -44,21 +46,42 @@ class Available(Commands.Cog):
             "unique": False
         }
 
-        Channel = CTX.channel
-        Invite = Channel.create_invite(reason=Settings["reason"], max_age=Settings["age"], max_uses=Settings["uses"], temporary=Settings["temp"], unique=Settings["unique"])
+        Channel: Discord.TextChannel = CTX.channel
+        Invite: Discord.Invite = Channel.create_invite(reason=Settings["reason"], max_age=Settings["age"], max_uses=Settings["uses"], temporary=Settings["temp"], unique=Settings["unique"])
 
-        Converted = str(await Invite)
+        Converted: str = str(await Invite)
 
         def CleanseInvite(Code: str) -> str:
             assert isinstance(Code, str), "Code should be of type \"str\""
 
             return str.replace(Code, "https://", "")
 
-        Cleansed = CleanseInvite(Converted)
+        Cleansed: str = CleanseInvite(Converted)
 
         Embed.add_field(name="", value=f"**{Cleansed}**")
 
         await CTX.reply(embed=Embed)
+
+
+    # -- Games Command -- #
+
+    @Commands.cooldown(1, 5, Commands.BucketType.user)
+    @Commands.hybrid_command(name       = "games",
+                             description="All of the supported games for Starry")
+    
+    async def Games(self, CTX: Commands.Context) -> None:
+        Description: str = OpenFile("games.md", "r")
+
+        Embed = Discord.Embed(title="Starry's Supported Games",
+                              description=Description,
+                              color=Discord.Color.blurple())
+        
+        NewViewer: View = View()
+        
+        RawScript: Button = Button(label="Get Script",  style=Discord.ButtonStyle.success)
+        RawScript.callback = RawCallback
+
+        await CTX.reply(embed=Embed, view=NewViewer, delete_after=30)
 
 
     # -- Script Command -- #
@@ -68,18 +91,18 @@ class Available(Commands.Cog):
                              description="Returns Starry's latest & updated script")
     
     async def Script(self, CTX: Commands.Context) -> None:
-        Embed = Discord.Embed(title="Script",
+        Embed: Discord.Embed = Discord.Embed(title="Script",
                               description="For mobile users, press the **\"Raw\"** button and copy the message sent",
                               color=Discord.Color.blurple())
         
-        NewViewer = View()
+        NewViewer: View = View()
         
-        RawScript = Button(label="Raw Script",  style=Discord.ButtonStyle.success)
+        RawScript: Button = Button(label="Raw Script",  style=Discord.ButtonStyle.success)
         RawScript.callback = RawCallback
 
-        ViewGithub = Button(label="View Github", style=Discord.ButtonStyle.link, url="https://github.com/Starry-Proj")
+        ViewGithub: Button = Button(label="View Github", style=Discord.ButtonStyle.link, url="https://github.com/Starry-Proj")
 
-        ButtonList = [RawScript, ViewGithub]
+        ButtonList: list = [RawScript, ViewGithub]
 
         for Item in ButtonList:
             NewViewer.add_item(Item)
