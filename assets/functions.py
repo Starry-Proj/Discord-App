@@ -89,7 +89,7 @@ def RemoveCache() -> None:
 def PermissionExists(Permission: str) -> bool:
     return hasattr(Discord.Permissions, Permission)
 
-def AllowedPermissions(Permissions: list) -> list: # e.g. -> allowedPermissions(["manage_server", "administrator", "moderate_members"])
+def AllowedPermissions(Permissions: list) -> list: # e.g. -> AllowedPermissions(["manage_server", "administrator", "moderate_members"])
     FinalList = []
 
     for Permission in Permissions:
