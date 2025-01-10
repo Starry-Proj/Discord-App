@@ -1,9 +1,6 @@
 ## Our Discord App ✨
-This app has been specifically setup to _exclusively_ work in the Starry server ~~and in my debug server.~~
-- Any other server will prompt an error on arrival.
+This app has been specifically setup for our server, however it's easily convertable to another.
 - App running on version 2.0.a, report errors to our [Discord server](https://discord.gg/luau)
-
-~~You may whitelist any servers however by modifying the allowed servers array in `.env`~~
 
 ---
 
