@@ -77,6 +77,6 @@ SetupEvents(); ErrorHandling()
 
 # -- Run the Bot -- #
 
-Client.run(DEVELOPER_TOKEN)
+Client.run(TOKEN)
 
 print(f"{Newline}{Emojis["X"]} Starry closed & App is offline {Newline}") # This exclusively runs after the process is killed
