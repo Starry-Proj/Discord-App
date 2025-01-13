@@ -35,11 +35,14 @@ class Available(Commands.Cog):
                              description="Generate a permanent invite to the server")
     
     async def Invite(self, CTX: Commands.Context) -> None:
+        Guild: Discord.Guild = CTX.guild
+
         Embed: Discord.Embed = Discord.Embed(title="Server Invite",
-                              description=f"{CustomEmojis["Check"]}{Whitespace} Here's your permanent invite to Starry")
+                                             description=f"{CustomEmojis["Check"]}{Whitespace} Here's your permanent invite to {Guild.name}",
+                                             color=Discord.Color.green())
         
         Settings: dict = {
-            "reason": "Starry Invite",
+            "reason": f"{Guild.name} Invite",
             "age" : 0,
             "uses" : 0,
             "temp" : False,
@@ -82,6 +85,53 @@ class Available(Commands.Cog):
         RawScript.callback = RawCallback
 
         await CTX.reply(embed=Embed, view=NewViewer, delete_after=30)
+
+
+    # -- Help Command -- #
+
+    @Commands.cooldown(1, 5, Commands.BucketType.user)
+    @Commands.hybrid_command(name="help",
+                             description="Search for a command with $help <command>",
+                             aliases=["guide"])
+    
+    async def Help(self, CTX: Commands.Context, command: str = None) -> None:
+        AvailableCommands = len(self.App.commands)
+        Description = f"**Prefix** is $, or / {Newline}{AvailableCommands} **Commands** available"
+
+        if command is None:
+            Admin: str = OpenFile("admin+.md", "r")
+            ForEveryone: str = OpenFile("forEveryone.md", "r")
+
+            Embed: Discord.Embed = Discord.Embed(title="Command Guide for All Commands",
+                                                 description=Description,
+                                                 color=Discord.Color.blurple())
+            
+            Embed.add_field(name="Free for All", value=ForEveryone, inline=False)
+            Embed.add_field(name="Admin+", value=Admin, inline=False)
+
+            await CTX.reply(embed=Embed, delete_after=25)
+
+        else:
+            Command: any = self.App.get_command(command)
+
+            if Command is None:
+                return await CTX.reply(embed=Failure("Unknown Command", f"\"{command}\"", "Please choose an existing command when searching", "Parameter \"command\" returns an unknown command"))
+
+            Embed: Discord.Embed = Discord.Embed(title=f"Information on \"{command}\"",
+                                                 description=Description,
+                                                 color=Discord.Color.blurple())
+            
+            Aliases: list = Command.aliases or "No aliases"
+            AliasesString: str = Newline.join(f"- \"{Alias}\"" for Alias in Aliases) if Aliases != "No aliases" else Aliases
+
+            Description: str = Command.help or Command.description or "No description provided"
+            
+            Embed.add_field(name="Command", value=f"Name : \"**{Command}**\" {Newline}Description : \"**{Description}**\"", inline=False)
+            
+            if AliasesString != "No aliases":
+                Embed.add_field(name="Aliases", value=AliasesString, inline=False)
+
+            await CTX.reply(embed=Embed, delete_after=10)
 
 
     # -- Script Command -- #
