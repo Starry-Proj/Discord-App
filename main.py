@@ -1,4 +1,3 @@
-import dotenv  as ENV;
 import discord as Discord;
 import os      as OS;
 import asyncio as Async;
@@ -26,6 +25,7 @@ load_dotenv()
 # Variables
 
 TOKEN: str = OS.getenv("TOKEN")
+DEVELOPER_TOKEN: str = OS.getenv("DEVELOPER_TOKEN")
 
 Client: Commands.Bot = GetClient()
 
@@ -46,10 +46,10 @@ async def Sync(CTX: Commands.Context) -> None:
             except Exception as Error:
                 print(f"{Emojis["X"]} Error reloading {Name[:-3]} Cog: {Error}")
 
-    Message: str = f"Everything was synced to the command tree! {Newline}{Newline} 1. Reload Discord using **CTRL + R** or **CMD + R** on macOS {Newline} 2. On Mobile, simply close & re-open Discord. {Newline}{Newline}-# **NOTE**: Still having issues? Contact [@Suno](<https://discord.com/users/1002377371892072498>)"
+    Description: str = OpenFile("sync.md", "r")
 
     Embed: Discord.Embed = Discord.Embed(title="Synced Commands",
-                          description=Message,
+                          description=Description,
                           color=Discord.Color.green())
 
     print(f"{Newline}{Emojis["Rocket"]} Synced all Cogs{Newline}")
@@ -77,6 +77,6 @@ SetupEvents(); ErrorHandling()
 
 # -- Run the Bot -- #
 
-Client.run(TOKEN)
+Client.run(DEVELOPER_TOKEN)
 
 print(f"{Newline}{Emojis["X"]} Starry closed & App is offline {Newline}") # This exclusively runs after the process is killed
