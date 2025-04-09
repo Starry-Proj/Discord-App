@@ -3,7 +3,7 @@ This app has been specifically setup for our server, however it's easily convert
 - App running on version 2.0.a, report errors to our [Discord server](https://discord.gg/luau)
 
 > [!WARNING]
-> This repo won't be updated further! Commands which are added that _will remain private_.
+> This repo won't be updated further! New commands being added are private and Starry-specific.
 
 ---
 
